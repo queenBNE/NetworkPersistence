@@ -1,4 +1,3 @@
-# NetworkPersistence
+# Persistent Homology
 
-This repository contains JAVA code to compute the persistent homology of networks. 
-The actual persistence computations are done using the JavaPlex library. 
+This repository contains currently contains one JAVA project: NetworkPersistence. This project consists of code that allows the computation of the persistent homology of weighted networks. The persistence computation is done by using the JavaPlex library. 
