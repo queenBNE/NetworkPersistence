@@ -33,7 +33,7 @@ public class NetworkScience {
 		BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
 		System.out.println("Converting intervals to descending intervals");
 		intervals = WeightedGraphFiltrationFunctions.convertToDescendingIntervals(intervals);
-		System.out.println("JavaPlex: Decreasing");
+		System.out.println("Intervals: Decreasing");
 		System.out.println(intervals);		
 		System.out.println(intervals.getBettiNumbers());
 	}
