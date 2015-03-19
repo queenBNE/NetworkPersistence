@@ -13,7 +13,7 @@ import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltrationFunctions;
 import au.edu.rmit.javaplex.graph.io.GraphReader;
 
 public class NetworkScience {
-	final static String filename = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/Networks/networkScience.csv";
+	final static String filename = "/Users/jacobien/Dropbox/PhD/Data/netscience/largestConnectedComp[edges].csv";
 	final static String sep = ",";
 	final static Boolean hasHeader = true;
 	final static Boolean directed = false;
@@ -22,11 +22,18 @@ public class NetworkScience {
 	final static int maxDim = 2;
 	
 	@Test
-	public void computePersistence2() throws IOException{
+	public void computePersistence() throws IOException{
 		System.out.println("Reading graph");
 		double[][] A = GraphReader.getWeigthedAdjacencyMatrix(filename, sep, hasHeader, directed);
-		BarcodeCollection<Double> intervals = NetworkPersistenceFunctions.computeIntervals(A, false, maxWeight, maxDim);
-		System.out.println("Intervals: Decreasing");
+		System.out.println("Creating stream");
+		final VietorisRipsStream<Integer> stream = WeightedGraphFiltrationFunctions.getVietorisRipsStreamDescending(A, maxWeight, maxDim);
+		System.out.println("Obtaining algorithm");
+		final AbstractPersistenceAlgorithm<Simplex> algorithm = Plex4.getDefaultSimplicialAlgorithm(maxDim);
+		System.out.println("Computing intervals");
+		BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
+		System.out.println("Converting intervals to descending intervals");
+		intervals = WeightedGraphFiltrationFunctions.convertToDescendingIntervals(intervals);
+		System.out.println("JavaPlex: Decreasing");
 		System.out.println(intervals);		
 		System.out.println(intervals.getBettiNumbers());
 	}
