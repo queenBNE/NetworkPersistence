@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import edu.stanford.math.plex4.graph.UndirectedWeightedListGraph;
 import static org.junit.Assert.assertEquals;
 
 public class GraphReaderTest {
@@ -31,6 +32,16 @@ public class GraphReaderTest {
 		System.out.println(String.format("Graph with %s nodes and %s edges", n,m));
 	}
 	
-	
+	@Test
+	public void readEdgeFileAsGraph() throws IOException{
+		UndirectedWeightedListGraph graph = GraphReader.getUndirectedWeightedGraph(filename, sep, hasHeader);
+		
+		int n = graph.getNumVertices();
+		assertEquals(379, n);
+		
+		int m = graph.getNumEdges();
+		assertEquals(914, m);
+		System.out.println(String.format("Graph with %s nodes and %s edges", n,m));
+	}
 	
 }

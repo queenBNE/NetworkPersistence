@@ -2,19 +2,24 @@ package au.edu.rmit.javaplex.graph.filtration;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 
+import au.edu.rmit.javaplex.homology.filtration.DecreasingMapConverter;
+import au.edu.rmit.javaplex.plex4.streams.impl.CliqueComplexWeightedStream;
+import static org.junit.Assert.assertEquals;
 import edu.stanford.math.plex4.api.Plex4;
+import edu.stanford.math.plex4.graph.UndirectedWeightedListGraph;
 import edu.stanford.math.plex4.homology.barcodes.BarcodeCollection;
 import edu.stanford.math.plex4.homology.barcodes.Interval;
 import edu.stanford.math.plex4.homology.chain_basis.Simplex;
+import edu.stanford.math.plex4.homology.filtration.FiltrationConverter;
 import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
-import edu.stanford.math.plex4.streams.impl.VietorisRipsStream;
 
-public class WeightedGraphFiltrationTest {
+public class CliqueComplexWeightedStreamTest {
 
 	// Adjacency matrix of a graph
 	double[][] adjacencyMatrix = new double[][] {{ 0, 2.1,   0, 2.1,   1,  0}, 
@@ -24,9 +29,27 @@ public class WeightedGraphFiltrationTest {
 												{  1,   1, 0.7,   0,   0,  1}, 
 												{  0,   0,   1,   0,   1,  0}};
 	
+	
+	
+	
+	
 	// Homology dimension
 	int d = 2;
 	double maxWeight = 5d;
+	int n = adjacencyMatrix.length;
+	UndirectedWeightedListGraph graph;
+	
+	@Before
+	public void buildGraph(){
+		graph = new UndirectedWeightedListGraph(n);
+		for(int i = 0; i < n-1; i++)
+			for(int j=i+1; j < n; j++){
+				double w = adjacencyMatrix[i][j]; 
+				if(w > 0)
+					graph.addEdge(i, j, w);
+		}
+	}
+	
 	
 	@Test 
 	/**
@@ -35,7 +58,8 @@ public class WeightedGraphFiltrationTest {
 	 * 
 	 */
 	public void exampleExistingCodeIncreasing(){
-		final VietorisRipsStream<Integer> stream = WeightedGraphFiltrationFunctions.getVietorisRipsStreamAscending(adjacencyMatrix, maxWeight, d);
+		CliqueComplexWeightedStream stream = new CliqueComplexWeightedStream(graph, 2);
+		stream.finalizeStream();
 		final AbstractPersistenceAlgorithm<Simplex> algorithm = Plex4.getDefaultSimplicialAlgorithm(d);
 		final BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
 		System.out.println("JavaPlex: Increasing");
@@ -71,11 +95,15 @@ public class WeightedGraphFiltrationTest {
 	 * a graph filtration on decreasing edge weight.
 	 * 
 	 */
-	public void exampleExistingCodeDencreasing(){
-		final VietorisRipsStream<Integer> stream = WeightedGraphFiltrationFunctions.getVietorisRipsStreamDescending(adjacencyMatrix, maxWeight, d);
+	public void exampleExistingCodeDecreasing(){
+		Set<Double> weights = graph.getWeights();
+		weights.add(maxWeight);
+		FiltrationConverter filtrationConverter = new DecreasingMapConverter(weights);
+		CliqueComplexWeightedStream stream = new CliqueComplexWeightedStream(graph, d, filtrationConverter);
+		stream.finalizeStream();
 		final AbstractPersistenceAlgorithm<Simplex> algorithm = Plex4.getDefaultSimplicialAlgorithm(d);
 		BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
-		intervals = WeightedGraphFiltrationFunctions.convertToDescendingIntervals(intervals);
+		//intervals = WeightedGraphFiltrationFunctions.convertToDescendingIntervals(intervals);
 		System.out.println("JavaPlex: Decreasing");
 		System.out.println(intervals);
 		
@@ -86,7 +114,7 @@ public class WeightedGraphFiltrationTest {
 		int largeIntervalCount = 0;
 		int infIntervalCount = 0;
 		for(Interval<Double> interval : intervalsZero){
-			if(interval.isLeftInfinite())
+			if(interval.getStart() == 0)
 				infIntervalCount +=1;
 			else if(interval.getStart() == 2.1)
 				smallestIntervalCount += 1;
