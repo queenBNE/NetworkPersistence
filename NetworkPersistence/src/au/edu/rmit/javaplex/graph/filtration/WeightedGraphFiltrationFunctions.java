@@ -14,11 +14,11 @@ public class WeightedGraphFiltrationFunctions {
 
 	public static double inf = Infinity.Double.getPositiveInfinity();
 
-	public static VietorisRipsStream<Integer> graphVietorisRipsStream(double[][] adjacencyMatrix, double maxWeight) {
+	public static VietorisRipsStream<Integer> getVietorisRipsStreamAscending(double[][] adjacencyMatrix, double maxWeight, int dim) {
 		double[][] distanceMatrix = WeightedGraphFiltrationFunctions.adjacencyToDistanceMatrix(adjacencyMatrix);
 		ExplicitMetricSpace ems = new ExplicitMetricSpace(distanceMatrix);
 		double[] weights = WeightedGraphFiltrationFunctions.getIncreasingWeights(distanceMatrix, maxWeight);
-		final VietorisRipsStream<Integer> stream = new VietorisRipsStream<Integer>(ems, weights, 2);
+		final VietorisRipsStream<Integer> stream = new VietorisRipsStream<Integer>(ems, weights, dim);
 		stream.finalizeStream();
 		return stream;
 	}

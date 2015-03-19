@@ -12,8 +12,8 @@ import edu.stanford.math.plex4.streams.impl.VietorisRipsStream;
 import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltrationFunctions;
 import au.edu.rmit.javaplex.graph.io.GraphReader;
 
-public class NetworkScience {
-	final static String filename = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/Networks/networkScience.csv";
+public class CondensedMatter {
+	final static String filename = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/Networks/condensedMatter.csv";
 	final static String sep = ",";
 	final static Boolean hasHeader = true;
 	final static Boolean directed = false;
@@ -22,12 +22,20 @@ public class NetworkScience {
 	final static int maxDim = 2;
 	
 	@Test
-	public void computePersistence2() throws IOException{
+	public void computePersistence() throws IOException{
 		System.out.println("Reading graph");
 		double[][] A = GraphReader.getWeigthedAdjacencyMatrix(filename, sep, hasHeader, directed);
-		BarcodeCollection<Double> intervals = NetworkPersistenceFunctions.computeIntervals(A, false, maxWeight, maxDim);
-		System.out.println("Intervals: Decreasing");
-		System.out.println(intervals);		
-		System.out.println(intervals.getBettiNumbers());
+		int n = A.length;
+		int m = 0;
+		for(int i=0; i <n-1; i++)
+			for(int j=i+1; j < n; j++){
+				if(A[i][j] > 0)
+					m += 1;
+			}
+		System.out.println(String.format("Graph with %s nodes and %s edges", n,m));
+//		BarcodeCollection<Double> intervals = NetworkPersistenceFunctions.computeIntervals(A, false, maxWeight, maxDim);
+//		System.out.println("Intervals: Decreasing");
+//		System.out.println(intervals);		
+//		System.out.println(intervals.getBettiNumbers());
 	}
 }
