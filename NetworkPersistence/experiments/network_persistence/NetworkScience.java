@@ -34,7 +34,18 @@ public class NetworkScience {
 		System.out.println("Converting intervals to descending intervals");
 		intervals = WeightedGraphFiltrationFunctions.convertToDescendingIntervals(intervals);
 		System.out.println("JavaPlex: Decreasing");
-		System.out.println(intervals);		
+//		System.out.println(intervals);		
 		System.out.println(intervals.getBettiNumbers());
+	}
+	
+	@Test
+	public void computePersistence2() throws IOException{
+		System.out.println("Reading graph");
+		double[][] A = GraphReader.getWeigthedAdjacencyMatrix(filename, sep, hasHeader, directed);
+		BarcodeCollection<Double> intervals = NetworkPersistenceFunctions.computeIntervals(A, false, maxWeight, maxDim);
+		System.out.println("Intervals: Decreasing");
+//		System.out.println(intervals);		
+		System.out.println(intervals.getBettiNumbers());
+
 	}
 }
