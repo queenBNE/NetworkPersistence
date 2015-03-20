@@ -20,7 +20,7 @@ public class CondensedMatter {
 	final static String basepathUbuntu = "/home/jacobien/git/PersistentHomology/NetworkPersistence/";
 	final static String basepathMac = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/";
 	final static String basepath = basepathUbuntu;
-	final static String filename = basepath + "Networks/condensedMatter.csv";
+	final static String filename = basepath + "networks/condensedMatter.csv";
 	final static String sep = ",";
 	final static Boolean hasHeader = false;
 	final static Boolean directed = false;
