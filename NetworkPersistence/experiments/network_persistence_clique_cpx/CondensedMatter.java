@@ -11,18 +11,22 @@ import edu.stanford.math.plex4.homology.barcodes.BarcodeCollection;
 import edu.stanford.math.plex4.homology.chain_basis.Simplex;
 import edu.stanford.math.plex4.homology.filtration.FiltrationConverter;
 import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
-import au.edu.rmit.javaplex.graph.io.GraphReader;
+import au.edu.rmit.javaplex.io.BarcodeStringWriter;
 import au.edu.rmit.javaplex.homology.filtration.DecreasingMapConverter;
+import au.edu.rmit.javaplex.io.GraphReader;
 import au.edu.rmit.javaplex.plex4.streams.impl.CliqueComplexWeightedStream;
 
 public class CondensedMatter {
-	final static String filename = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/Networks/condensedMatter.csv";
+	final static String basepathUbuntu = "/home/jacobien/git/PersistentHomology/NetworkPersistence/";
+	final static String basepathMac = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/";
+	final static String basepath = basepathUbuntu;
+	final static String filename = basepath + "Networks/condensedMatter.csv";
 	final static String sep = ",";
 	final static Boolean hasHeader = false;
 	final static Boolean directed = false;
 	
 	double maxWeight = 0;
-	final static int maxDim = 2;
+	final static int maxDim = 3;
 	
 	@Test
 	public void computePersistence() throws IOException{
@@ -45,5 +49,9 @@ public class CondensedMatter {
 		System.out.println("JavaPlex: Decreasing");
 		//System.out.println(intervals);
 		System.out.println(intervals.getBettiNumbers());
+		
+		BarcodeStringWriter.writeToFile(intervals, 0, String.valueOf(maxWeight), "0.0", basepath + "results/condensedMatter0.txt");
+		BarcodeStringWriter.writeToFile(intervals, 1, String.valueOf(maxWeight), "0.0", basepath + "results/condensedMatter1.txt");
+		BarcodeStringWriter.writeToFile(intervals, 2, String.valueOf(maxWeight), "0.0", basepath + "results/condensedMatter2.txt");
 	}
 }

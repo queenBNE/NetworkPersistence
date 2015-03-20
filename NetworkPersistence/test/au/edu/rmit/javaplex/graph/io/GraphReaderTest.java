@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import au.edu.rmit.javaplex.io.GraphReader;
 import edu.stanford.math.plex4.graph.UndirectedWeightedListGraph;
 import static org.junit.Assert.assertEquals;
 

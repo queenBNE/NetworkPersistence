@@ -1,4 +1,4 @@
-package au.edu.rmit.javaplex.graph.io;
+package au.edu.rmit.javaplex.io;
 
 import java.io.BufferedReader;
 import java.io.File;

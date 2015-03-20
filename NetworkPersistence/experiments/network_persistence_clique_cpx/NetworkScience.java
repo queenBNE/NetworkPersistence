@@ -15,12 +15,16 @@ import edu.stanford.math.plex4.homology.filtration.FiltrationConverter;
 import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
 import edu.stanford.math.plex4.streams.impl.VietorisRipsStream;
 import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltrationFunctions;
-import au.edu.rmit.javaplex.graph.io.GraphReader;
 import au.edu.rmit.javaplex.homology.filtration.DecreasingMapConverter;
+import au.edu.rmit.javaplex.io.BarcodeStringWriter;
+import au.edu.rmit.javaplex.io.GraphReader;
 import au.edu.rmit.javaplex.plex4.streams.impl.CliqueComplexWeightedStream;
 
 public class NetworkScience {
-	final static String filename = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/Networks/networkScience.csv";
+	final static String basepathUbuntu = "/home/jacobien/git/PersistentHomology/NetworkPersistence/";
+	final static String basepathMac = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/";
+	final static String basepath = basepathUbuntu;
+	final static String filename = basepath + "Networks/networkScience.csv";
 	final static String sep = ",";
 	final static Boolean hasHeader = true;
 	final static Boolean directed = false;
@@ -42,5 +46,9 @@ public class NetworkScience {
 		System.out.println("JavaPlex: Decreasing");
 		System.out.println(intervals);
 		System.out.println(intervals.getBettiNumbers());
+		
+		BarcodeStringWriter.writeToFile(intervals, 0, String.valueOf(maxWeight), "0.0", basepath + "results/networkScience0.txt");
+		BarcodeStringWriter.writeToFile(intervals, 1, String.valueOf(maxWeight), "0.0", basepath + "results/networkScience1.txt");
+		BarcodeStringWriter.writeToFile(intervals, 2, String.valueOf(maxWeight), "0.0", basepath + "results/networkScience2.txt");
 	}
 }

@@ -12,7 +12,7 @@ import edu.stanford.math.plex4.homology.chain_basis.Simplex;
 import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
 import edu.stanford.math.plex4.streams.impl.VietorisRipsStream;
 import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltrationFunctions;
-import au.edu.rmit.javaplex.graph.io.GraphReader;
+import au.edu.rmit.javaplex.io.GraphReader;
 
 public class HighEnergyPhysics {
 	final static String filename = "/Users/jacobien/Git/PersistentHomology/NetworkPersistence/Networks/highEnergyPhysics.csv";
