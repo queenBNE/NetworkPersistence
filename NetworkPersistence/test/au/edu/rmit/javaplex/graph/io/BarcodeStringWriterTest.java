@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltrationFunctions;
+import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltration;
 import au.edu.rmit.javaplex.io.BarcodeStringWriter;
 import edu.stanford.math.plex4.api.Plex4;
 import edu.stanford.math.plex4.homology.barcodes.BarcodeCollection;
@@ -36,7 +36,7 @@ public class BarcodeStringWriterTest {
 	 * 
 	 */
 	public void exampleExistingCodeIncreasing() throws IOException{
-		final VietorisRipsStream<Integer> stream = WeightedGraphFiltrationFunctions.getVietorisRipsStreamAscending(adjacencyMatrix, maxWeight, d);
+		final VietorisRipsStream<Integer> stream = WeightedGraphFiltration.getVietorisRipsStreamAscending(adjacencyMatrix, maxWeight, d);
 		final AbstractPersistenceAlgorithm<Simplex> algorithm = Plex4.getDefaultSimplicialAlgorithm(d);
 		final BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
 		System.out.println(intervals);

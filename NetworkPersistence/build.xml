@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<project name="network_persistence" default="basic_jar" basedir=".">
+	<property name="bin.dir" value="bin" />
+	<property name="build.dir" value="build" />
+	<property name="src.dir" value="src" />
+	<property name="project.name" value="network_persistence" />
+	<property name="basic.jar" value="${build.dir}/${project.name}_basic.jar" />
+	<property name="runnable.jar" value="${build.dir}/${project.name}.jar" />
+	<!--Basic Jar file-->
+	<target name="basic_jar">
+		<jar destfile="${basic.jar}" basedir="${bin.dir}">
+		</jar>
+	</target>
+	
+	<!--Runnable jar file-->
+	<target name="runnable_jar" depends="classes">
+		<jar destfile="${runnable.jar}" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="au.edu.rmit.javaplex.graph.GraphAPI" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="${bin.dir}" />
+		</jar>
+	</target>
+	
+	<!--Bin targets-->
+	<target name="classes" depends="init">
+		<javac destdir="${bin.dir}" classpathref="classpath" debug="${debug.flag}" includeAntRuntime="false" source="1.5" target="1.5">
+			<compilerarg value="-Xlint" />
+			<src>
+				<pathelement path="${src.dir}" />
+			</src>
+		</javac>
+	</target>
+	
+	<!--Initialization targets-->
+	<target name="init">
+		<mkdir dir="${bin.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+</project>

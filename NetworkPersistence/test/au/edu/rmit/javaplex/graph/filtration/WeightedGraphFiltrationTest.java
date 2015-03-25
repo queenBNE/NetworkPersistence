@@ -35,7 +35,7 @@ public class WeightedGraphFiltrationTest {
 	 * 
 	 */
 	public void exampleExistingCodeIncreasing(){
-		final VietorisRipsStream<Integer> stream = WeightedGraphFiltrationFunctions.getVietorisRipsStreamAscending(adjacencyMatrix, maxWeight, d);
+		final VietorisRipsStream<Integer> stream = WeightedGraphFiltration.getVietorisRipsStreamAscending(adjacencyMatrix, maxWeight, d);
 		final AbstractPersistenceAlgorithm<Simplex> algorithm = Plex4.getDefaultSimplicialAlgorithm(d);
 		final BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
 		System.out.println("JavaPlex: Increasing");
@@ -72,10 +72,10 @@ public class WeightedGraphFiltrationTest {
 	 * 
 	 */
 	public void exampleExistingCodeDencreasing(){
-		final VietorisRipsStream<Integer> stream = WeightedGraphFiltrationFunctions.getVietorisRipsStreamDescending(adjacencyMatrix, maxWeight, d);
+		final VietorisRipsStream<Integer> stream = WeightedGraphFiltration.getVietorisRipsStreamDescending(adjacencyMatrix, maxWeight, d);
 		final AbstractPersistenceAlgorithm<Simplex> algorithm = Plex4.getDefaultSimplicialAlgorithm(d);
 		BarcodeCollection<Double> intervals = algorithm.computeIntervals(stream);
-		intervals = WeightedGraphFiltrationFunctions.convertToDescendingIntervals(intervals);
+		intervals = WeightedGraphFiltration.convertToDescendingIntervals(intervals);
 		System.out.println("JavaPlex: Decreasing");
 		System.out.println(intervals);
 		

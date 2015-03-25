@@ -2,24 +2,20 @@ package au.edu.rmit.javaplex.io;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+
 
 import edu.stanford.math.plex4.graph.UndirectedWeightedListGraph;
 
 public class GraphReader {
 
 	public static double[][] getWeigthedAdjacencyMatrix(String edgeFile, String sep, Boolean header, Boolean directed) throws IOException{
-		@SuppressWarnings("resource")
 		BufferedReader edgeReader = new BufferedReader(new FileReader(new File(edgeFile)));
-		Map<String, Integer> nodes = Maps.newHashMap(); 
+		Map<String, Integer> nodes = new HashMap<String, Integer>(); 
 		
 		String line;
 		if(header)
@@ -57,7 +53,7 @@ public class GraphReader {
 	
 	public static UndirectedWeightedListGraph getUndirectedWeightedGraph(String edgeFile, String sep, Boolean header) throws IOException{
 		BufferedReader edgeReader = new BufferedReader(new FileReader(new File(edgeFile)));
-		Map<String, Integer> nodes = Maps.newHashMap(); 
+		Map<String, Integer> nodes = new HashMap<String, Integer>(); 
 		
 		String line;
 		if(header)
