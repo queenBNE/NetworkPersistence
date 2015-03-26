@@ -3,8 +3,6 @@ package network.persistence.clique.cpx;
 import java.io.IOException;
 import java.util.Set;
 
-import network.persistence.old.NetworkPersistenceFunctions;
-
 import org.junit.Test;
 
 import edu.stanford.math.plex4.api.Plex4;
@@ -13,8 +11,6 @@ import edu.stanford.math.plex4.homology.barcodes.BarcodeCollection;
 import edu.stanford.math.plex4.homology.chain_basis.Simplex;
 import edu.stanford.math.plex4.homology.filtration.FiltrationConverter;
 import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
-import edu.stanford.math.plex4.streams.impl.VietorisRipsStream;
-import au.edu.rmit.javaplex.graph.filtration.WeightedGraphFiltration;
 import au.edu.rmit.javaplex.homology.filtration.DecreasingMapConverter;
 import au.edu.rmit.javaplex.io.BarcodeStringWriter;
 import au.edu.rmit.javaplex.io.GraphReader;

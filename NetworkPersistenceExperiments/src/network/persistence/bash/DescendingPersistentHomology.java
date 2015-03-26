@@ -17,7 +17,7 @@ import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
 public class DescendingPersistentHomology {
 	
 	final static String sep = ",";
-	final static Boolean hasHeader = true;
+	final static Boolean hasHeader = false;
 	final static Boolean directed = false;
 	
 	static double maxWeight = 0;
