@@ -25,3 +25,8 @@ The networks found in the folder 'networks' are edgelists corresponding to the l
 * AstroPhysics.csv: M. E. J. Newman, Proc. Natl. Acad. Sci. USA 98, 404-409 (2001).
 * HighEnergyPhysics.csv: M. E. J. Newman, Proc. Natl. Acad. Sci. USA 98, 404-409 (2001).
 * NetworkScience.csv: M. E. J. Newman, Phys. Rev. E 74, 036104 (2006). 
+
+
+NetworkPersistenceR 
+-------------------
+This folder contains a small Rmd script for plotting some of the output of the persistent homology computations in NetworkPersistenceExperiments. 
