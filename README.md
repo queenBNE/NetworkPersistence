@@ -1,16 +1,22 @@
 # Persistent Homology
 
-This repository currently contains one JAVA project: NetworkPersistence. This project contains code that allows the computation of the persistent homology of weighted networks. The persistence computation is done by using the JavaPlex library. 
+This repository contains several folders with R code, JAVA code and shell scripts. 
+
+
+NetworkPersistence
+------------------
+This folder contains a JAVA project (for Eclipse) written to interact with the JavaPlex library, to compute the persistent homology of weighted networks. The build folder contains network_persistence.jar, a library that be used in combination with javaplex-4.2.1.jar in your own projects.   
 
 We implemented two different methods to compute the persistent homology of undirected weighted networks. 
 
-* One method uses the adjacency matrix of a network and the ExplicitMetricSpace class from JavaPlex. This method is suitable for networks with a relatively small number of vertices. However, for large sparse networks, the memory allocated for the adjacency matrix may exceed the maximum memory allocated to JAVA and hence result in an OutOfMemory exception. 
+* One method uses the adjacency matrix of a network and the ExplicitMetricSpace class from JavaPlex. This method is suitable for networks with a relatively small number of vertices. However, for large sparse networks, the memory allocated for the adjacency matrix may exceed the maximum memory allocated to JAVA and hence result in an OutOfMemory exception. -- See WeightedGraphFiltrationTest in the test folder for an example.
 
-* The second method uses the CliqueComplexWeightedStream. 
+* The second method uses code built on the FlagComplexStream. See WeightedFlagComplexStreamTest in the test folder for an example.  
 
-Tests for both methods can be found in the test folder. 
 
-The experiments folder contains code corresponding to the paper [Persistent Homology of Collaboration Networks](http://www.hindawi.com/journals/mpe/2013/815035/). Please cite if using the code. 
+NetworkPersistenceExperiments
+-----------------------------
+This project uses JavaPlex and the network_persistence.jar to compute the persistent homology of networks as discussed in the paper [Persistent Homology of Collaboration Networks](http://www.hindawi.com/journals/mpe/2013/815035/). Please cite if using the code. 
 
 Also please [cite JavaPlex](https://github.com/appliedtopology/javaplex/wiki/Citation-Information), as all computations are run using the JavaPlex code. 
 
@@ -19,4 +25,3 @@ The networks found in the folder 'networks' are edgelists corresponding to the l
 * AstroPhysics.csv: M. E. J. Newman, Proc. Natl. Acad. Sci. USA 98, 404-409 (2001).
 * HighEnergyPhysics.csv: M. E. J. Newman, Proc. Natl. Acad. Sci. USA 98, 404-409 (2001).
 * NetworkScience.csv: M. E. J. Newman, Phys. Rev. E 74, 036104 (2006). 
-

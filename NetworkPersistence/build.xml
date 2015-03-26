@@ -16,7 +16,7 @@
 	<target name="runnable_jar" depends="classes">
 		<jar destfile="${runnable.jar}" filesetmanifest="mergewithoutmain">
 			<manifest>
-				<attribute name="Main-Class" value="au.edu.rmit.javaplex.graph.GraphAPI" />
+				<attribute name="Main-Class" value="au.edu.rmit.javaplex.graph.GraphPersistenceAPI" />
 				<attribute name="Class-Path" value="." />
 			</manifest>
 			<fileset dir="${bin.dir}" />
