@@ -21,33 +21,29 @@ import edu.stanford.math.plex4.homology.interfaces.AbstractPersistenceAlgorithm;
 
 public class CliqueComplexWeightedStreamTest {
 
-	// Adjacency matrix of a graph
-	double[][] adjacencyMatrix = new double[][] {{ 0, 2.1,   0, 2.1,   1,  0}, 
-												{2.1,   0, 2.1,   0,   1,  0}, 
-												{  0, 2.1,   0,   0, 0.7,  1}, 
-												{2.1,   0,   0,   0,   0,  0}, 
-												{  1,   1, 0.7,   0,   0,  1}, 
-												{  0,   0,   1,   0,   1,  0}};
-	
-	
+	// Edge list of a graph
+	double[][] edgelist = new double[][]{{0,1,2.1},
+										 {0,3,2.1},
+										 {0,4,  1},
+										 {1,2,2.1},
+										 {1,3,  1},
+										 {2,4,0.7},
+										 {2,5,  1},
+										 {4,5,  1}};
 	
 	
 	
 	// Homology dimension
 	int d = 2;
 	double maxWeight = 5d;
-	int n = adjacencyMatrix.length;
+	int n = 6;
 	UndirectedWeightedListGraph graph;
 	
 	@Before
 	public void buildGraph(){
 		graph = new UndirectedWeightedListGraph(n);
-		for(int i = 0; i < n-1; i++)
-			for(int j=i+1; j < n; j++){
-				double w = adjacencyMatrix[i][j]; 
-				if(w > 0)
-					graph.addEdge(i, j, w);
-		}
+		for(double[] edge : edgelist)
+			graph.addEdge((int) edge[0], (int) edge[1], edge[2]);
 	}
 	
 	
