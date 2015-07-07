@@ -15,7 +15,7 @@ public class BarcodeStringWriter {
 		List<Interval<Double>> intervals = object.getIntervalsAtDimension(dimension);
 		String contents = "";
 		for(Interval<Double> interval : intervals)
-			contents = contents + String.format("%s,%s\n", interval.isLeftInfinite() ? minInf : interval.getStart(), interval.isRightInfinite() ? inf : interval.getEnd());
+			contents = contents + String.format("%s %s\n", interval.isLeftInfinite() ? minInf : interval.getStart(), interval.isRightInfinite() ? inf : interval.getEnd());
 		FileIOUtility.writeTextFile(path, contents, false);
 	}
 	
